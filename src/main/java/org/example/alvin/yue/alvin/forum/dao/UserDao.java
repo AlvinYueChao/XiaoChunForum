@@ -29,7 +29,7 @@ public class UserDao {
      * @return 匹配的用户数。1 表示用户名/密码正确，0 表示用户名或密码错误
      */
     public int getMatchCount(String userName, String password) {
-        String query = "SELECT COUNT(*) FROM t_user WHERE user_name = ? AND password = ?";
+        String query = " SELECT COUNT(*) FROM t_user WHERE user_name = ? AND password = ? ";
         Integer matchCount = null;
         try {
             matchCount = jdbcTemplate.queryForObject(query, new Object[]{userName, password}, Integer.class);
@@ -46,7 +46,7 @@ public class UserDao {
      * @return 对应的 User 对象
      */
     public User findUserByUserName(final String userName) {
-        String query = "SELECT * FROM t_user WHERE user_name = ?";
+        String query = " SELECT * FROM t_user WHERE user_name = ? ";
         final User user = new User();
         try {
             jdbcTemplate.query(query, new Object[]{userName}, new RowCallbackHandler() {
@@ -68,7 +68,7 @@ public class UserDao {
      * @param user 要保存的 User 对象
      */
     public void updateLoginInfo(User user) {
-        String query = "UPDATE t_user SET last_visit = ?, last_ip = ?, credits = ? WHERE user_id = ?";
+        String query = " UPDATE t_user SET last_visit = ?, last_ip = ?, credits = ? WHERE user_id = ? ";
         try {
             jdbcTemplate.update(query, user.getLastVisit(), user.getLastIp(), user.getCredits(), user.getUserId());
         } catch (DataAccessException e) {
