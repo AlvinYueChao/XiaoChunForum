@@ -9,13 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <file.encoding>UTF-8</file.encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>5.2.4.RELEASE</spring.version>
         <mysql.version>8.0.18</mysql.version>
         <commons-dbcp.version>2.7.0</commons-dbcp.version>
         <servlet.version>4.0.1</servlet.version>
         <jstl.version>1.2</jstl.version>
         <slf4j-version>1.7.30</slf4j-version>
+        <junit.version>5.6.1</junit.version>
     </properties>
 
     <dependencies>
@@ -45,6 +46,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <!-- aop:pointcut，aop:advisor 必须依赖 -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.5</version>
         </dependency>
         <!-- 依赖的数据库驱动类去 -->
         <dependency>
@@ -98,6 +105,19 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.13.1</version>
+        </dependency>
+
+        <!-- test 依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-﻿package org.example.alvin.yue.alvin.forum.domain;
+package org.example.alvin.domain;
 
 import lombok.Data;
 

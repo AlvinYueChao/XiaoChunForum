@@ -1,7 +1,7 @@
-﻿package org.example.alvin.yue.alvin.forum.dao;
+package org.example.alvin.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.alvin.yue.alvin.forum.domain.LoginLog;
+import org.example.alvin.domain.LoginLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
