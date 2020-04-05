@@ -3,20 +3,20 @@ package org.example.alvin.web;
 import org.example.alvin.domain.User;
 import org.example.alvin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
-@Controller
+@RestController
 public class LoginController {
     private UserService userService;
 
-    @RequestMapping(value = "/index.html")
-    public String loginPage() {
-        return "login";
+    @RequestMapping(value = {"/", "/index.html"})
+    public ModelAndView loginPage() {
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/loginCheck.html")

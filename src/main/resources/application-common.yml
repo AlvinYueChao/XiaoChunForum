@@ -1,0 +1,9 @@
+server:
+  port: 8096
+  servlet:
+    context-path: /smart
+
+spring:
+  mvc:
+    view.prefix: /jsp/
+    view.suffix: .jsp

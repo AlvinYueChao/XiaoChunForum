@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: yue-alvin-forum
+  profiles:
+    active: common,dev
