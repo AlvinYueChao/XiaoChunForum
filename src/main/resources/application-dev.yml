@@ -1,11 +1,12 @@
 spring:
   dataSource:
-    url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC
-    dirverClassName: com.mysql.cj.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC&characterEncoding=utf-8
+#    username: ENC(91nYBSQxMxPRHAxIJs19Uw==)
+#    password: ENC(o8AOOcwj5QLNFHpQholPSpr7gZWfvH23di6IVLncBhY=)
     username: root
     password: ZiF6OZ5eB4gW2kN0
-
-    type: org.apache.commons.dbcp2.BasicDataSource
     dbcp2:
       max-wait-millis: 10000
       min-idle: 5

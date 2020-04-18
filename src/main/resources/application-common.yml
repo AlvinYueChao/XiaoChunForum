@@ -7,3 +7,7 @@ spring:
   mvc:
     view.prefix: /jsp/
     view.suffix: .jsp
+
+#jasypt:
+#  encryptor:
+#    password: alvin@20200418
