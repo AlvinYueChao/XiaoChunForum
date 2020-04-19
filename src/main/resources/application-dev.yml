@@ -3,10 +3,8 @@ spring:
     type: org.apache.commons.dbcp2.BasicDataSource
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC&characterEncoding=utf-8
-#    username: ENC(91nYBSQxMxPRHAxIJs19Uw==)
-#    password: ENC(o8AOOcwj5QLNFHpQholPSpr7gZWfvH23di6IVLncBhY=)
-    username: root
-    password: ZiF6OZ5eB4gW2kN0
+    username: ENC(P+BapX4qZq6CpkfAZjdNug==)
+    password: ENC(e8WREgEjQQs4zOL0re8Jg2JakDoi/ABmOf9a9VpVSR8=)
     dbcp2:
       max-wait-millis: 10000
       min-idle: 5
