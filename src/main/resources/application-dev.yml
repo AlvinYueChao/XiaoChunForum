@@ -1,10 +1,14 @@
+logging:
+  level:
+    root: info
+
 spring:
-  dataSource:
-    type: org.apache.commons.dbcp2.BasicDataSource
+  datasource:
+    url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC&characterEncoding=utf-8
     username: ENC(P+BapX4qZq6CpkfAZjdNug==)
     password: ENC(e8WREgEjQQs4zOL0re8Jg2JakDoi/ABmOf9a9VpVSR8=)
+    type: org.apache.commons.dbcp2.BasicDataSource
     dbcp2:
       max-wait-millis: 10000
       min-idle: 5
