@@ -10,5 +10,4 @@ spring:
 
 jasypt:
   encryptor:
-    password: alvin@20200418
     algorithm: PBEWithMD5AndDES
