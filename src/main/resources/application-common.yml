@@ -10,4 +10,4 @@ spring:
 
 jasypt:
   encryptor:
-    algorithm: PBEWithMD5AndDES
+    password: ${secret_key}

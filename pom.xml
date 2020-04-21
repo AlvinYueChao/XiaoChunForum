@@ -33,7 +33,7 @@
         <!-- 加密依赖 -->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <artifactId>jasypt-spring-boot</artifactId>
             <version>3.0.2</version>
         </dependency>
 

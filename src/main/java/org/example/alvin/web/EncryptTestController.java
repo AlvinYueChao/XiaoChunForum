@@ -11,14 +11,10 @@ public class EncryptTestController {
     @Value("jasypt.encryptor.password")
     private String encrypt_key;
 
-    @Value("jasypt.encryptor.algorithm")
-    private String encrypt_algorithm;
-
     @RequestMapping(value = "/encrypt")
     public String getEncryptedString(String input) {
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         config.setPassword(encrypt_key);
-        config.setAlgorithm(encrypt_algorithm);
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         encryptor.setPoolSize(1);
         encryptor.setConfig(config);
@@ -29,7 +25,6 @@ public class EncryptTestController {
     public String getDecryptedString(String input) {
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         config.setPassword(encrypt_key);
-        config.setAlgorithm(encrypt_algorithm);
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         encryptor.setPoolSize(1);
         encryptor.setConfig(config);
