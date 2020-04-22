@@ -2,10 +2,8 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/sampledb?serverTimezone=UTC
     driverClassName: com.mysql.cj.jdbc.Driver
-#    username: ENC(rycQiez8GDMILVmzL3ew6Q==)
-#    password: ENC(9rgOYjWu9LRF7JcDAtmVkKrigwznnX51JpZ3zN19J/s=)
-    username: root
-    password: ZiF6OZ5eB4gW2kN0
+    username: ${DB_USER}
+    password: ${DB_PASS}
     type: org.apache.commons.dbcp2.BasicDataSource
     dbcp2:
       max-wait-millis: 10000
