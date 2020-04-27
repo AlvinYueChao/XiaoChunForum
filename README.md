@@ -8,3 +8,4 @@ In the future:
 1. use redis to cache hotspot
 2. user kafka to transfer message between upstream and downstream 
 3. use spring annotation for aop
+4. spring transaction manager for dao
