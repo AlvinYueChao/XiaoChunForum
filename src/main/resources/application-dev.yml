@@ -12,3 +12,13 @@ spring:
       validation-query: SELECT 1
       connection-properties:
         characterEncoding: utf8
+  redis:
+    database: 0
+    host: 192.168.20.10
+    port: 6379
+    timeout: 0
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+      max-wait: -1
