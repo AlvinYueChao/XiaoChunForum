@@ -6,21 +6,18 @@ import org.example.alvin.dao.UserDao;
 import org.example.alvin.domain.LoginLog;
 import org.example.alvin.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {
-    private UserDao userDao;
-    private LoginLogDao loginLogDao;
+    private final UserDao userDao;
+    private final LoginLogDao loginLogDao;
 
     @Autowired
-    public void setUserDao(UserDao userDao) {
+    public UserService(UserDao userDao, LoginLogDao loginLogDao, RedisTemplate<Object, Object> redisTemplate) {
         this.userDao = userDao;
-    }
-
-    @Autowired
-    public void setLoginLogDao(LoginLogDao loginLogDao) {
         this.loginLogDao = loginLogDao;
     }
 

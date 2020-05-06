@@ -1,14 +1,20 @@
-package org.example.alvin.cache;
+package org.example.alvin.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommonOperators {
+@Service
+public class CacheService {
+    private final RedisTemplate<Object, Object> redisTemplate;
+
     @Autowired
-    private RedisTemplate<Object, Object> redisTemplate;
+    public CacheService(RedisTemplate<Object, Object> redisTemplate) {
+        this.redisTemplate = redisTemplate;
+    }
 
     public void add(String key, String field, String value) {
 
@@ -30,7 +36,7 @@ public class CommonOperators {
         return null;
     }
 
-    public Map<String, Object> getAll(String key) {
+    public Map<Object, Object> getAll(String key) {
         return new HashMap<>();
     }
 }
