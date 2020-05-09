@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -16,11 +17,11 @@ public class CacheService {
         this.redisTemplate = redisTemplate;
     }
 
-    public void add(String key, String field, String value) {
+    public void addOrUpdate(String key, Map<String, String> fieldValuePairs) {
 
     }
 
-    public void deleteField(String key, String field) {
+    public void deleteFields(String key, List<String> fields) {
 
     }
 
@@ -28,15 +29,11 @@ public class CacheService {
 
     }
 
-    public void update(String key, String field, String currentValue, String newValue) {
-
-    }
-
-    public Object getField(String key, String field) {
+    public Map<String, String> getFields(String key, List<String> fields) {
         return null;
     }
 
-    public Map<Object, Object> getAll(String key) {
+    public Map<String, String> getAll(String key) {
         return new HashMap<>();
     }
 }
