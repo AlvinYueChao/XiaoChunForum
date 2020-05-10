@@ -1,8 +1,6 @@
 USE sampledb;
-GO
 
 DROP TABLE IF EXISTS t_login_log;
-GO
 
 -- 创建用户登录日志表
 CREATE TABLE t_login_log (
@@ -11,4 +9,3 @@ CREATE TABLE t_login_log (
     ip VARCHAR(32) NULL,
     login_datetime datetime NULL
 ) ENGINE=InnoDB;
-GO

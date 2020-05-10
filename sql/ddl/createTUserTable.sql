@@ -1,8 +1,6 @@
 USE sampledb;
-GO
 
 DROP TABLE IF EXISTS t_user;
-GO
 
 -- 创建用户表
 CREATE TABLE t_user (
@@ -13,4 +11,3 @@ CREATE TABLE t_user (
     last_visit datetime NULL,
     last_ip VARCHAR(32) NULL
 ) ENGINE=InnoDB;
-GO
