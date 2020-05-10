@@ -6,8 +6,8 @@ import java.util.Date;
 
 @Data
 public class LoginLog {
-    private int loginLogId;
-    private int userId;
+    private Long loginLogId;
+    private Long userId;
     private String ip;
     private Date loginDate;
 }

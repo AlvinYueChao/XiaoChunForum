@@ -52,8 +52,8 @@ public class UserDao {
             jdbcTemplate.query(query, new Object[]{userName}, new RowCallbackHandler() {
                 public void processRow(ResultSet resultSet) throws SQLException {
                     user.setUserName(userName);
-                    user.setUserId(resultSet.getInt("user_id"));
-                    user.setCredits(resultSet.getInt("credits"));
+                    user.setUserId(resultSet.getLong("user_id"));
+                    user.setCredits(resultSet.getLong("credits"));
                 }
             });
         } catch (DataAccessException e) {

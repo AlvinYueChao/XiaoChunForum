@@ -7,10 +7,10 @@ import java.util.Date;
 
 @Data
 public class User implements Serializable {
-    private int userId;
+    private Long userId;
     private String userName;
     private String password;
-    private int credits;
+    private Long credits;
     private String lastIp;
     private Date lastVisit;
 }
