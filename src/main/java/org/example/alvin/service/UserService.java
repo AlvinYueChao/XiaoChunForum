@@ -37,7 +37,6 @@ public class UserService {
         loginLog.setIp(user.getLastIp());
         loginLog.setLoginDate(user.getLastVisit());
 
-        userDao.updateLoginInfo(user);
         loginLogDao.insertLoginLog(loginLog);
     }
 }
