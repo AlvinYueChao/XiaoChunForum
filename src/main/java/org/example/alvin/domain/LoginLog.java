@@ -1,11 +1,13 @@
 package org.example.alvin.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 
 @Data
-public class LoginLog {
+@EqualsAndHashCode(callSuper = true)
+public class LoginLog extends BaseDomain {
     private Long loginLogId;
     private Long userId;
     private String ip;
