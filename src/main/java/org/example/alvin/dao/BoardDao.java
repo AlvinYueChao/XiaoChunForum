@@ -1,4 +1,4 @@
 package org.example.alvin.dao;
 
-public class ForumDao {
+public class BoardDao {
 }
