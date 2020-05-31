@@ -26,9 +26,7 @@ public class LoginController {
             return new ModelAndView("login", "error", "用户名或密码错误");
         } else {
             User user = userService.findUserByUserName(loginCommand.getUserName());
-            user.setLastIp(request.getLocalAddr());
-            user.setLastVisit(new Date());
-            userService.loginSuccess(user);
+
             request.getSession().setAttribute("user", user);
             return new ModelAndView("main");
         }

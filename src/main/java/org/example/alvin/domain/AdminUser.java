@@ -14,25 +14,6 @@ import javax.persistence.*;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("1")
-public class User extends BaseDomain {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private int userId;
-
-    @Column(name = "user_name")
-    private String userName;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "user_type")
-    private int userType;
-
-    @Column(name = "locked")
-    private int locked;
-
-    @Column(name = "credits")
-    private int credits;
+@DiscriminatorValue("2")
+public class AdminUser extends User {
 }

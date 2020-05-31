@@ -10,6 +10,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
+
 @Service
 public class UserService {
     private final UserDao userDao;
@@ -31,12 +33,6 @@ public class UserService {
 
     @Transactional
     public void loginSuccess(User user) {
-        user.setCredits(user.getCredits() + 5);
-        LoginLog loginLog = new LoginLog();
-        loginLog.setUserId(user.getUserId());
-        loginLog.setIp(user.getLastIp());
-        loginLog.setLoginDate(user.getLastVisit());
 
-        loginLogDao.insertLoginLog(loginLog);
     }
 }
