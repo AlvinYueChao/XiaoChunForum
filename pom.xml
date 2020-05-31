@@ -61,6 +61,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.18</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.12.Final</version>
+        </dependency>
         <!-- 依赖的连接池类库 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
