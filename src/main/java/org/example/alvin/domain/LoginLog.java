@@ -19,8 +19,9 @@ public class LoginLog extends BaseDomain {
     @Column(name = "login_log_id")
     private int loginLogId;
 
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "ip")
     private String ip;

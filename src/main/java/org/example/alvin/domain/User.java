@@ -6,15 +6,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.time.OffsetDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @Table(name = "t_user")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("1")
 public class User extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,12 @@ public class User extends BaseDomain {
 
     @Column(name = "user_type")
     private int userType;
+
+    @Column(name = "last_ip")
+    private String lastIp;
+
+    @Column(name = "last_visit")
+    private OffsetDateTime lastVisit;
 
     @Column(name = "locked")
     private int locked;

@@ -8,7 +8,9 @@ CREATE TABLE t_user (
     password VARCHAR(30) NOT NULL DEFAULT '',
     user_type TINYINT NOT NULL DEFAULT 1 COMMENT '1:普通用户; 2: 管理员',
     locked TINYINT NOT NULL DEFAULT 0 COMMENT '0: 未锁定; 1: 锁定',
-    credits INT NULL
+    credits INT NULL,
+    last_visit datetime NULL,
+    last_ip VARCHAR(30) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE t_user ADD INDEX t_user_user_name (user_name);
