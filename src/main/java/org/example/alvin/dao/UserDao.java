@@ -61,4 +61,18 @@ public class UserDao {
         }
         return user;
     }
+
+    /**
+     * 更新用户积分，最后登录 IP 以及最后登录时间
+     *
+     * @param user 要保存的 User 对象
+     */
+    public void updateLoginInfo(User user) {
+        String query = " UPDATE t_user SET last_visit = ?, last_ip = ?, credits = ? WHERE user_id = ? ";
+        try {
+            jdbcTemplate.update(query, user.getLastVisit(), user.getLastIp(), user.getCredits(), user.getUserId());
+        } catch (DataAccessException e) {
+            log.error("更新用户信息出错，请重试或放弃本次修改", e);
+        }
+    }
 }

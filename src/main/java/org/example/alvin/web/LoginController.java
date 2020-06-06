@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 @RestController
 public class LoginController {
@@ -26,7 +26,9 @@ public class LoginController {
             return new ModelAndView("login", "error", "用户名或密码错误");
         } else {
             User user = userService.findUserByUserName(loginCommand.getUserName());
-
+            user.setLastIp(request.getLocalAddr());
+            user.setLastVisit(OffsetDateTime.now());
+            this.userService.loginSuccess(user);
             request.getSession().setAttribute("user", user);
             return new ModelAndView("main");
         }

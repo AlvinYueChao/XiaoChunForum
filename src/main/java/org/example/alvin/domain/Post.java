@@ -25,9 +25,6 @@ public class Post extends BaseDomain {
     @Column(name = "board_id")
     private int boardId;
 
-    @Column(name = "post_type")
-    private int postType;
-
     @Column(name = "post_title")
     private String postTitle;
 

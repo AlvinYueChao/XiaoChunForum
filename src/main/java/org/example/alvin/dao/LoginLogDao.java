@@ -20,7 +20,7 @@ public class LoginLogDao {
     public void insertLoginLog(LoginLog loginLog) {
         String query = " INSERT INTO t_login_log(user_id, ip, login_datetime) values (?,?,?) ";
         try {
-            jdbcTemplate.update(query, loginLog.getUserId(), loginLog.getIp(), loginLog.getLoginDate());
+            jdbcTemplate.update(query, loginLog.getUser().getUserId(), loginLog.getIp(), loginLog.getLoginDate().toString());
         } catch (DataAccessException e) {
             log.error("更新登录日志信息出错，请重试或放弃本次修改", e);
         }
