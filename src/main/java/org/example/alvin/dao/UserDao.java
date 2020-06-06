@@ -2,6 +2,7 @@ package org.example.alvin.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.alvin.domain.User;
+import org.example.alvin.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -70,7 +71,7 @@ public class UserDao {
     public void updateLoginInfo(User user) {
         String query = " UPDATE t_user SET last_visit = ?, last_ip = ?, credits = ? WHERE user_id = ? ";
         try {
-            jdbcTemplate.update(query, user.getLastVisit(), user.getLastIp(), user.getCredits(), user.getUserId());
+            jdbcTemplate.update(query, DateTimeUtils.safeToDateTimeString(user.getLastVisit()), user.getLastIp(), user.getCredits(), user.getUserId());
         } catch (DataAccessException e) {
             log.error("更新用户信息出错，请重试或放弃本次修改", e);
         }

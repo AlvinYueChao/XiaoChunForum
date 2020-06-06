@@ -2,6 +2,7 @@ package org.example.alvin.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.alvin.domain.LoginLog;
+import org.example.alvin.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,7 +21,7 @@ public class LoginLogDao {
     public void insertLoginLog(LoginLog loginLog) {
         String query = " INSERT INTO t_login_log(user_id, ip, login_datetime) values (?,?,?) ";
         try {
-            jdbcTemplate.update(query, loginLog.getUser().getUserId(), loginLog.getIp(), loginLog.getLoginDate().toString());
+            jdbcTemplate.update(query, loginLog.getUser().getUserId(), loginLog.getIp(), DateTimeUtils.safeToDateTimeString(loginLog.getLoginDate()));
         } catch (DataAccessException e) {
             log.error("更新登录日志信息出错，请重试或放弃本次修改", e);
         }
