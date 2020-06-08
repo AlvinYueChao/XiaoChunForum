@@ -1,6 +1,7 @@
 package org.example.alvin.dao;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.alvin.dao.repository.UserRepository;
 import org.example.alvin.domain.User;
 import org.example.alvin.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,12 @@ import java.sql.SQLException;
 @Repository
 public class UserDao {
     private JdbcTemplate jdbcTemplate;
+    private UserRepository userRepository;
 
     @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -75,5 +78,9 @@ public class UserDao {
         } catch (DataAccessException e) {
             log.error("更新用户信息出错，请重试或放弃本次修改", e);
         }
+    }
+
+    public void saveUser(User user) {
+        this.userRepository.save(user);
     }
 }
