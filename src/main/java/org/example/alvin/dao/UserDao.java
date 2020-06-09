@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -78,9 +79,5 @@ public class UserDao {
         } catch (DataAccessException e) {
             log.error("更新用户信息出错，请重试或放弃本次修改", e);
         }
-    }
-
-    public void saveUser(User user) {
-        this.userRepository.save(user);
     }
 }
