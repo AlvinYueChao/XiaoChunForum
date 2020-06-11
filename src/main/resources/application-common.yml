@@ -7,3 +7,4 @@ spring:
   mvc:
     view.prefix: /jsp/
     view.suffix: .jsp
+
