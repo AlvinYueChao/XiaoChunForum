@@ -1,7 +1,6 @@
 package org.example.alvin.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.alvin.dao.repository.UserRepository;
 import org.example.alvin.domain.User;
 import org.example.alvin.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,10 @@ import java.sql.SQLException;
 @Repository
 public class UserDao {
     private JdbcTemplate jdbcTemplate;
-    private UserRepository userRepository;
 
     @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate, UserRepository userRepository) {
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.userRepository = userRepository;
     }
 
     /**
