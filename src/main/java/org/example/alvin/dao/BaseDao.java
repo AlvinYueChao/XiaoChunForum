@@ -1,17 +1,32 @@
 package org.example.alvin.dao;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
+import javax.persistence.EntityManagerFactory;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Repository
 public class BaseDao<T> {
+
+    private EntityManagerFactory entityManagerFactory;
+
+    @Autowired
+    public BaseDao(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
+
     public Page<T> pagedQuery(@NotNull String hql, @Min(value = 1, message = "pageNo should start from 1") int pageNo, int pageSize, Object... values) {
-        String countQueryString = " SELECT COUNT(*) ";
+        String countQueryString = String.format(" SELECT COUNT(*) %s", removeSelect(removeOrders(hql))) ;
+
         return null;
     }
 
@@ -41,7 +56,7 @@ public class BaseDao<T> {
         return stringBuffer.toString();
     }
 
-    public Session getSession() {
-        return null;
+    protected Session getSession() {
+        return this.entityManagerFactory.unwrap(SessionFactory.class).getCurrentSession();
     }
 }
