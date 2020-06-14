@@ -1,5 +1,6 @@
 package org.example.alvin.dao;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManagerFactory;
@@ -20,18 +20,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Slf4j
-@Repository
 public class BaseDao<T> {
 
-    private final EntityManagerFactory entityManagerFactory;
-    private final JdbcTemplate jdbcTemplate;
+    private EntityManagerFactory entityManagerFactory;
+    @Getter
+    private JdbcTemplate jdbcTemplate;
     private final Class<T> entityClass;
 
     @Autowired
-    public BaseDao(EntityManagerFactory entityManagerFactory, JdbcTemplate jdbcTemplate) {
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
-        this.jdbcTemplate = jdbcTemplate;
+    }
 
+    @Autowired
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public BaseDao() {
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
         this.entityClass = (Class) params[0];
