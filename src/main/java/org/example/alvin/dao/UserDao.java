@@ -6,16 +6,12 @@ import org.example.alvin.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @Slf4j
 @Repository
-public class UserDao {
+public class UserDao extends BaseDao<User> {
+
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -51,17 +47,27 @@ public class UserDao {
         String query = " SELECT * FROM t_user WHERE user_name = ? ";
         final User user = new User();
         try {
-            jdbcTemplate.query(query, new Object[]{userName}, new RowCallbackHandler() {
-                public void processRow(ResultSet resultSet) throws SQLException {
-                    user.setUserName(userName);
-                    user.setUserId(resultSet.getInt("user_id"));
-                    user.setCredits(resultSet.getInt("credits"));
-                }
+            jdbcTemplate.query(query, new Object[]{userName}, resultSet -> {
+                user.setUserName(userName);
+                user.setUserId(resultSet.getInt("user_id"));
+                user.setCredits(resultSet.getInt("credits"));
             });
         } catch (DataAccessException e) {
             log.error("无法找到 {} 对应的用户，请检查用户名是否输入正确", userName, e);
         }
         return user;
+    }
+
+    /**
+     * 根据模糊用户名查找符合条件的所有用户
+     * @param userName 用户名关键字
+     * @param pageNo 页首元素下标
+     * @param pageSize 页大小
+     * @return 该页所有用户
+     */
+    public Page<User> findUserByUserName(final String userName, int pageNo, int pageSize) {
+        String query = " SELECT * FROM t_user WHERE user_name like ? ";
+        return pagedQuery(query, pageNo, pageSize, userName);
     }
 
     /**
