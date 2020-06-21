@@ -5,6 +5,9 @@ import org.example.alvin.dao.LoginLogDao;
 import org.example.alvin.dao.UserDao;
 import org.example.alvin.domain.LoginLog;
 import org.example.alvin.domain.User;
+import org.example.alvin.domain.UserLockStatus;
+import org.example.alvin.domain.UserType;
+import org.example.alvin.exception.UserExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -21,8 +24,15 @@ public class UserService {
         this.loginLogDao = loginLogDao;
     }
 
-    public void register(User user) {
-
+    public void register(User user) throws UserExistException {
+        User matchedUser = this.findUserByUserName(user.getUserName());
+        if (matchedUser != null) {
+            throw new UserExistException("该用户名已被占用");
+        } else {
+            user.setCredits(5);
+            user.setUserType(UserType.COMMON_USER.getValue());
+            this.userDao.save(user);
+        }
     }
 
     public boolean hasMatchUser(String userName, String password) {
@@ -31,6 +41,26 @@ public class UserService {
 
     public User findUserByUserName(String userName) {
         return userDao.findUserByUserName(userName);
+    }
+
+    public void lockUser(String userName) throws UserExistException {
+        User user = this.findUserByUserName(userName);
+        if (user == null) {
+            throw new UserExistException("该用户名不存在，无法锁定");
+        } else {
+            user.setLocked(UserLockStatus.USER_LOCK.getLockStatus());
+            userDao.save(user);
+        }
+    }
+
+    public void unlockUser(String userName) throws UserExistException {
+        User user = this.findUserByUserName(userName);
+        if (user == null) {
+            throw new UserExistException("该用户名不存在，无法解锁");
+        } else {
+            user.setLocked(UserLockStatus.USER_UNLOCK.getLockStatus());
+            userDao.save(user);
+        }
     }
 
     @Transactional

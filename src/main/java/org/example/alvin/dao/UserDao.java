@@ -41,6 +41,14 @@ public class UserDao extends BaseDao<User> {
         return this.userRepository.findByUserName(userName);
     }
 
+    public User findUserById(final int userId) {
+        return this.userRepository.findByUserId(userId);
+    }
+
+    public void save(User user) {
+        this.userRepository.save(user);
+    }
+
     /**
      * 根据模糊用户名查找符合条件的所有用户
      * @param userName 用户名关键字
