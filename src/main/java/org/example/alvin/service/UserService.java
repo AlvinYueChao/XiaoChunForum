@@ -21,6 +21,10 @@ public class UserService {
         this.loginLogDao = loginLogDao;
     }
 
+    public void register(User user) {
+
+    }
+
     public boolean hasMatchUser(String userName, String password) {
         return userDao.getMatchCount(userName, password) > 0;
     }
