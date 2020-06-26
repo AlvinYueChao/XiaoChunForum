@@ -1,10 +1,20 @@
 package org.example.alvin.dao;
 
 import org.example.alvin.domain.Post;
+import org.example.alvin.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PostDao extends BaseDao<Post> {
     private static final String GET_PAGED_POSTS = " SELECT * FROM t_post WHERE topic_id = ? ORDER BY create_time DESC ";
-    private static final String DELETE_TOPIC_POSTS = " DELETE FROM t_post WHERE topic_id = ? ";
+
+    private PostRepository postRepository;
+
+    @Autowired
+    public void setPostRepository(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     public Page<Post> getPagedPosts(int topicId, int pageNo, int pageSize) {
          return pagedQuery(GET_PAGED_POSTS, pageNo, pageSize, topicId);
@@ -15,6 +25,6 @@ public class PostDao extends BaseDao<Post> {
      * @param topicId 主题ID
      */
     public void deleteTopicPosts(int topicId) {
-        getJdbcTemplate().update(DELETE_TOPIC_POSTS, topicId);
+        this.postRepository.deleteByPostId(topicId);
     }
 }
