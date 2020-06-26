@@ -72,6 +72,6 @@ public class UserService {
         loginLog.setLoginDate(user.getLastVisit());
 
         userDao.updateLoginInfo(user);
-        loginLogDao.insertLoginLog(loginLog);
+        loginLogDao.save(loginLog);
     }
 }
